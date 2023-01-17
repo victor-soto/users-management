@@ -1,0 +1,18 @@
+version: '3.3'
+
+services:
+  postgres:
+    image: postgres:12.13-alpine
+    container_name: um_postgres
+    environment:
+      POSTGRES_USER: um-user
+      POSTGRES_PASSWORD: um-password
+      POSTGRES_DB: users_management
+    ports:
+      - 5432:5432
+    volumes:
+      - ./db_init:/db_init
+      - user_management_db:/var/lib/postgresql/data
+
+volumes:
+  user_management_db:

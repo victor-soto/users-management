@@ -1,8 +1,8 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common'
-import { getRepositoryToken } from '@nestjs/typeorm'
+import { TypeOrmModule, getRepositoryToken } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 
-import { UserController } from './controller'
+import { UserController as UsersController } from './controller'
 import { IUserCreateAdapter } from './adapter'
 import { IUserRepository } from '@/core/user/repository/user'
 import { UserCreateUseCase } from '@/core/user/use-cases/user-create'
@@ -11,8 +11,8 @@ import { UserRepository } from './repository'
 import { UsersSchema } from './schema'
 
 @Module({
-  imports: [],
-  controllers: [UserController],
+  imports: [TypeOrmModule.forFeature([UsersSchema])],
+  controllers: [UsersController],
   providers: [
     {
       provide: IUserCreateAdapter,
@@ -23,15 +23,15 @@ import { UsersSchema } from './schema'
     },
     {
       provide: IUserRepository,
-      useFactory: async (repository: Repository<UsersSchema & UserEntity>) => {
+      useFactory: (repository: Repository<UsersSchema & UserEntity>) => {
         return new UserRepository(repository)
       },
       inject: [getRepositoryToken(UsersSchema)],
     },
   ],
 })
-export class UserModule implements NestModule {
+export class UsersModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply().forRoutes(UserController)
+    consumer.apply().forRoutes(UsersController)
   }
 }

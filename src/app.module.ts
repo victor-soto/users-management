@@ -6,6 +6,7 @@ import { AppController } from './app.controller'
 import { AppService } from './app.service'
 // import { UsersModule } from './users/users.module'
 import { InfraModule } from './infra/module'
+import { UsersModule } from './modules/user/module'
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { InfraModule } from './infra/module'
     //   synchronize: true,
     // }),
     InfraModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

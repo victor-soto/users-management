@@ -17,21 +17,17 @@ export class UserCreateUseCase {
     const entity = new UserEntity(input)
 
     const userExists = await this.userRepository.findOne({
-      where: { email: entity.email },
+      email: entity.email,
     })
 
     if (userExists) {
       throw new ApiConflictException('User already exists')
     }
 
-    const session = await this.userRepository.startSession()
-
     try {
-      const user = await this.userRepository.create(entity, { session })
-      await session.commit()
+      const user = await this.userRepository.create(entity)
       return user
     } catch (error) {
-      await session.rollback()
       throw error
     }
   }

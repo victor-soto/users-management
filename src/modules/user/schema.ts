@@ -12,7 +12,7 @@ export class UsersSchema extends BaseEntity {
   id: number
 
   @Column({ nullable: false })
-  name: string
+  firstName: string
 
   @Column({ nullable: false })
   lastName: string

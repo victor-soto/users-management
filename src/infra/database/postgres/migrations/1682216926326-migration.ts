@@ -4,7 +4,7 @@ export class Migration1682216926326 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`CREATE TABLE IF NOT EXISTS public.user (
         id uuid NOT NULL,
-        "name" text NOT NULL,
+        "firstName" text NOT NULL,
         "lastName" text NOT NULL,
         "email" text NOT NULL,
         "password" text NOT NULL,

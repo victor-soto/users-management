@@ -1,19 +1,19 @@
-import { Column, Model, Table } from 'sequelize-typescript'
+// import { Column, Model, Table } from 'sequelize-typescript'
 
-@Table
-export class User extends Model {
-  @Column
+// @Table
+export class User /*extends Model*/ {
+  // @Column
   name: string
 
-  @Column
+  // @Column
   lastName: string
 
-  @Column
+  // @Column
   email: string
 
-  @Column
+  // @Column
   password: string
 
-  @Column({ defaultValue: true })
+  // @Column({ defaultValue: true })
   isActive: boolean
 }

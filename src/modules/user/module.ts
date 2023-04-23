@@ -5,11 +5,11 @@ import { Repository } from 'typeorm'
 import { UserController as UsersController } from './controller'
 import { IUsersCreateAdapter, IUsersListAdapter } from './adapter'
 import { IUsersRepository } from '@/core/user/repository/user'
-import { UsersCreateUseCase } from '@/core/user/use-cases/user-create'
+import { UsersCreateUseCase } from '@/core/user/use-cases/users-create'
 import { UserEntity } from '@/core/user/entity/user'
 import { UserRepository } from './repository'
 import { UsersSchema } from './schema'
-import { UsersListUseCase } from '@/core/user/use-cases/user-list'
+import { UsersListUseCase } from '@/core/user/use-cases/users-list'
 
 @Module({
   imports: [TypeOrmModule.forFeature([UsersSchema])],

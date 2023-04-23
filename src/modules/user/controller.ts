@@ -3,26 +3,27 @@ import {
   Controller,
   Post,
   Get,
-  Query,
   HttpCode,
   HttpStatus,
 } from '@nestjs/common'
-import { UserCreateInput, UserCreateOutput } from './types'
-import { IUserCreateAdapter } from './adapter'
+import { UsersCreateInput, UserCreateOutput, UsersListOutput } from './types'
+import { IUsersCreateAdapter, IUsersListAdapter } from './adapter'
 
 @Controller('users')
 export class UserController {
-  constructor(private readonly userUseCases: IUserCreateAdapter) {}
+  constructor(
+    private readonly usersCreate: IUsersCreateAdapter,
+    private readonly usersList: IUsersListAdapter,
+  ) {}
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  async create(@Body() input: UserCreateInput): UserCreateOutput {
-    return this.userUseCases.execute(input)
+  async create(@Body() input: UsersCreateInput): UserCreateOutput {
+    return await this.usersCreate.execute(input)
   }
 
   @Get()
-  // todo: remove any
-  get(@Query('isActive') isActive?: boolean): any {
-    // return this.service.findAll({ isActive })
+  async list(): UsersListOutput {
+    return await this.usersList.execute()
   }
 }

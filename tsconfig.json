@@ -7,8 +7,14 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "target": "es2017",
+    "resolveJsonModule": true,
     "sourceMap": true,
     "outDir": "./dist",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
     "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
@@ -16,6 +22,7 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    // "strict": true, // todo: seems unnecessary
   }
 }

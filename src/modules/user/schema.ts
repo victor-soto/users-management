@@ -23,6 +23,9 @@ export class UsersSchema extends BaseEntity {
   @Column({ nullable: false })
   password: string
 
+  @Column({ nullable: false, default: true })
+  active: boolean
+
   @CreateDateColumn()
   createdAt: Date
 

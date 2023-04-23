@@ -1,19 +1,19 @@
 import {
-  UserCreateInput,
+  UsersCreateInput,
   UserCreateOutput,
-  UserCreateSchema,
+  UsersCreateSchema,
 } from '@/modules/user/types'
 
 import { UserEntity } from '../entity/user'
-import { IUserRepository } from '../repository/user'
+import { IUsersRepository } from '../repository/user'
 import { ApiConflictException } from '@/utils/exception'
 import { ValidateSchema } from '@/utils/decorators/validate-schema.decorator'
 
-export class UserCreateUseCase {
-  constructor(private readonly userRepository: IUserRepository) {}
+export class UsersCreateUseCase {
+  constructor(private readonly userRepository: IUsersRepository) {}
 
-  @ValidateSchema(UserCreateSchema)
-  async execute(input: UserCreateInput): Promise<UserCreateOutput> {
+  @ValidateSchema(UsersCreateSchema)
+  async execute(input: UsersCreateInput): Promise<UserCreateOutput> {
     const entity = new UserEntity(input)
 
     const userExists = await this.userRepository.findOne({

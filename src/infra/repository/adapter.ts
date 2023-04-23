@@ -1,4 +1,4 @@
-import { SaveOptions } from 'typeorm'
+import { FindOptionsWhere, SaveOptions } from 'typeorm'
 
 import { CreateModel } from './types'
 
@@ -9,4 +9,8 @@ export abstract class IRepository<T> {
   ): Promise<CreateModel>
 
   abstract findOne<TQuery = Partial<T>>(filter: TQuery): Promise<T>
+
+  abstract find<TQuery = FindOptionsWhere<T> | FindOptionsWhere<T>[]>(
+    filter: TQuery,
+  ): Promise<T[]>
 }

@@ -1,4 +1,10 @@
-import { BaseEntity, FindOneOptions, Repository, SaveOptions } from 'typeorm'
+import {
+  BaseEntity,
+  FindOneOptions,
+  FindOptionsWhere,
+  Repository,
+  SaveOptions,
+} from 'typeorm'
 
 import { IEntity } from '@/utils/entity'
 import { IRepository } from '../adapter'
@@ -21,5 +27,13 @@ export abstract class PostgresRepository<T extends BaseEntity & IEntity>
   async findOne<TQuery = Partial<T>>(filter: TQuery): Promise<T> {
     Object.assign(filter, { deletedAt: null })
     return await this.repository.findOne({ where: filter } as FindOneOptions<T>)
+  }
+
+  async find<TQuery = FindOptionsWhere<T> | FindOptionsWhere<T>[]>(
+    filter: TQuery,
+  ): Promise<T[]> {
+    return await this.repository.findBy({ ...filter } as
+      | FindOptionsWhere<T>
+      | FindOptionsWhere<T>[])
   }
 }

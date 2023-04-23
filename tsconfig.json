@@ -12,7 +12,7 @@
     "outDir": "./dist",
     "paths": {
       "@/*": [
-        "src/*"
+        "./src/*"
       ]
     },
     "baseUrl": "./",
@@ -22,7 +22,6 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false,
-    // "strict": true, // todo: seems unnecessary
+    "noFallthroughCasesInSwitch": false
   }
 }

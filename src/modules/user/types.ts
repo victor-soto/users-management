@@ -5,11 +5,11 @@ import { UserEntitySchema as UsersEntitySchema } from '@/core/user/entity/user'
 
 type Schema = z.infer<typeof UsersEntitySchema>
 
-export const UsersCreateSchema = z.object({
-  firstName: z.string({ required_error: 'First name is required' }),
-  lastName: z.string({ required_error: 'Last name is required' }),
-  email: z.string().email(),
-  password: z.string().min(6),
+export const UsersCreateSchema = UsersEntitySchema.pick({
+  firstName: true,
+  lastName: true,
+  email: true,
+  password: true,
 })
 
 export type UsersCreateInput = z.infer<typeof UsersCreateSchema>

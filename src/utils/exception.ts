@@ -3,7 +3,7 @@ import { HttpException, HttpStatus } from '@nestjs/common'
 export type ErrorModel = {
   error: {
     code: string | number
-    traceid: string
+    traceId: string
     message: string
     timestamp: string
     path: string
@@ -12,7 +12,7 @@ export type ErrorModel = {
 
 export class BaseException extends HttpException {
   context: string
-  traceid: string
+  traceId: string
   statusCode: number
   readonly code?: string
 

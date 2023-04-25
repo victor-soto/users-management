@@ -10,9 +10,10 @@ import { UserEntity } from '@/core/user/entity/user'
 import { UserRepository } from './repository'
 import { UsersSchema } from './schema'
 import { UsersListUseCase } from '@/core/user/use-cases/users-list'
+import { LoggerModule } from '@/infra/logger'
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UsersSchema])],
+  imports: [TypeOrmModule.forFeature([UsersSchema]), LoggerModule],
   controllers: [UsersController],
   providers: [
     {
